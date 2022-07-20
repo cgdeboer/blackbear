@@ -1,15 +1,24 @@
 Blackbear: Standard Library Data and Math Tools
 ========================================
-.. image:: https://travis-ci.org/cgdeboer/blackbear.svg?branch=master
-    :target: https://travis-ci.org/cgdeboer/blackbear
+.. image:: https://app.travis-ci.com/cgdeboer/blackbear.svg?branch=master
+    :target: https://app.travis-ci.com/cgdeboer/blackbear
 
 .. image:: https://img.shields.io/pypi/v/blackbear.svg
     :target: https://pypi.org/project/blackbear/
 
-Blackbear is an organic (standard library) library for data manipulation and
-math using only built-in python `dicts`` and `sets` (NO: `numpy`, `pandas`, `polars`)
+Blackbear is an organic (standard library) library for key-based data manipulation and
+math using only built-in python ``dicts`` and ``sets`` (without ``numpy, pandas, polars``).
 
-.. image:: https://raw.githubusercontent.com/cgdeboer/blackbear/master/docs/blackbear.png
+**Justification**: there are a lot of great python-based data tools that make working
+with relational data much easier. pandas_ is such a tool, and is well suited to working with
+large(ish) datasets. numpy_ and polars_ are also great tools, though not as helpful if you rely
+on relational/labeled data. Unfortunately, pandas_ can be excruciatingly slow when used repeatedly
+on smaller data sets (see benchmarks). This can be the case in simulation tools, that have
+"unvectorizable" step functions. ``blackbear`` can be used to replace some of the functionality
+used in ``pandas.Series``, basic math on aligned index (``keys()``).
+
+.. image:: https://raw.githubusercontent.com/cgdeboer/blackbear/master/docs/blackbear.jpeg
+    :width: 400
 
 
 Example Code:
@@ -38,15 +47,18 @@ Example Code:
 
 Performance
 ---------------
-"No `numpy`, no `pandas`, not even `polars`, I bet this is really, really slow. Right ?"
+"No numpy_, no pandas_, not even polars_, I bet this is really, really slow. Right ?"
 
 For certain use cases, it can be faster than any of those. Here is a guide:
 
-- Use `blackbear` for frequent (millions) operations on small collections (< 20 items) where matching on an index (i.e dict keys is needed)
-- Do not use `blackbear` for operations on larger collections (> 50000).
+- Use ``blackbear`` for frequent (millions) operations on small collections (< 20 items) where matching on an index (i.e dict keys) is needed.
+- Do not use ``blackbear`` for operations on larger collections (> 50000).
 
 *See benchmark details and data below.*
 
+.. _numpy: https://numpy.org/
+.. _pandas: https://pandas.pydata.org/
+.. _polars: https://www.pola.rs/
 
 
 Feature Support
@@ -56,7 +68,7 @@ You are responsible for passing in the correct types to blackbear functions,
 we didn't want the additional overhead of type checking.
 
 
-Blackbear officially supports Python 3.9+.
+Blackbear officially supports Python 3.8+.
 
 Installation
 ------------
@@ -89,51 +101,66 @@ Benchmarks
 -----------------
 
 **100000 X 5 Element-wise ops on collection of 10**
-Pandas
-user	0m35.212s
-Polars
-user	0m3.398s
-Numpy
-user	0m1.437s
-Blackbear
-user	0m0.601s
+
+.. code-block::
+
+    Pandas
+    user 	0m35.212s
+    Polars
+    user	0m3.398s
+    Numpy
+    user	0m1.437s
+    Blackbear
+    user	0m0.601s
 
 **1000000 X 5 Element-wise ops on collection of 10**
-Pandas
-user	5m26.803s
-Polars
-user	0m24.115s
-Numpy
-user	0m6.734s
-Blackbear
-user	0m5.574s
+
+.. code-block::
+
+    Pandas
+    user	5m26.803s
+    Polars
+    user	0m24.115s
+    Numpy
+    user	0m6.734s
+    Blackbear
+    user	0m5.574s
 
 **1000 X 5 Element-wise ops on collection of 10000**
-Pandas
-user	0m1.406s
-Polars
-user	0m1.055s
-Numpy
-user	0m0.737s
-Blackbear
-user	0m2.703s
+
+.. code-block::
+
+    Pandas
+    user	0m1.406s
+    Polars
+    user	0m1.055s
+    Numpy
+    user	0m0.737s
+    Blackbear
+    user	0m2.703s
 
 **1000 X 5 Element-wise ops on collection of 100000**
-Pandas
-user	0m1.725s
-Polars
-user	0m1.230s
-Numpy
-user	0m1.035s
-Blackbear
-user	0m39.090s
+
+.. code-block::
+
+    Pandas
+    user	0m1.725s
+    Polars
+    user	0m1.230s
+    Numpy
+    user	0m1.035s
+    Blackbear
+    user	0m39.090s
 
 **500000 X 5 Element-wise ops on collection of 5**
-Pandas
-user	2m46.098s
-Polars
-user	0m12.899s
-Numpy
-user	0m3.674s
-Blackbear
-user	0m2.025s
+
+.. code-block::
+
+    Pandas
+    user	2m46.098s
+    Polars
+    user	0m12.899s
+    Numpy
+    user	0m3.674s
+    Blackbear
+    user	0m2.025s
