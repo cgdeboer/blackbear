@@ -1,6 +1,6 @@
 Blackbear: Standard Library Data and Math Tools
 ========================================
-.. image:: https://app.travis-ci.com/cgdeboer/blackbear.svg?branch=master
+.. image:: https://github.com/cgdeboer/blackbear/actions/workflows/python-app.yml/badge.svg
     :target: https://app.travis-ci.com/cgdeboer/blackbear
 
 .. image:: https://img.shields.io/pypi/v/blackbear.svg
