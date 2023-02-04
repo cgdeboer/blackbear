@@ -123,27 +123,21 @@ class TestMethods(unittest.TestCase):
                'baz': 32}
         self.assertEqual(bb.add(_in1, _in2, fill=10), out)
 
-    def test_add_dict_fill_sparse(self):
-        _in1 = {'foo': 60,
-                'bar': 15,
-                'baz': 24}
-        _in2 = {'foo': 2,
-                'exogenous': "not relevant",
-                'baz': 8}
-        out = {'foo': 62,
-               'bar': 25,
-               'baz': 32}
-        self.assertEqual(bb.add(_in1, _in2, fill=10), out)
-
     def test_add_dict_fill_empty(self):
         _in1 = {}
         _in2 = {'foo': 2,
                 'exogenous': "not relevant",
                 'baz': 8}
-        out = {'foo': 62,
-               'bar': 25,
-               'baz': 32}
         self.assertEqual(bb.add(_in1, _in2, fill=10), {})
+
+    def test_reset_dict(self):
+        _in1 = {'foo': 60,
+                'bar': 15,
+                'baz': 24}
+        out = {'foo': 62,
+               'bar': 62,
+               'baz': 62}
+        self.assertEqual(bb.reset(_in1, 62), out)
 
 
 if __name__ == '__main__':

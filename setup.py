@@ -5,10 +5,10 @@ with open("README.rst", "r") as fh:
 
 setuptools.setup(
     name="blackbear",
-    version="0.0.1",
+    version="1.0.0",
     author="Calvin DeBoer",
     author_email="cgdeboer@gmail.com",
-    description=("TDB"),
+    description=("Standard Library Data and Math Tools"),
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/cgdeboer/blackbear",

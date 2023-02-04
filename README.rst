@@ -100,6 +100,8 @@ How to Contribute
 Benchmarks
 -----------------
 
+> Performed on an Intel x64 chipped Mac (i7) with real blas and lapack installed.
+
 **100000 X 5 Element-wise ops on collection of 10**
 
 .. code-block::
